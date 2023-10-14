@@ -1,5 +1,4 @@
-.pokedex {
-    height: 100vh;
+.bag {
     width: auto;
     display: flex;
     flex-wrap: wrap;
@@ -7,12 +6,11 @@
     align-items: center;
     position: relative;
     padding: 5rem;
-    h1 {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 99;
+    flex-direction: column;
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+
     }
     .item {
         width: 200px;
@@ -24,15 +22,13 @@
         justify-content: center;
         flex-direction: column;
         cursor: pointer;
-        filter: grayscale(1);
-        p, img {
-            filter: blur(3px);
-        }
     }
-    .captured {
-        filter: grayscale(0);
-        p, img {
-            filter: blur(0px);
-        }
+}
+
+.bag__container {
+    position: relative;
+    height: auto;
+    .item {
+        filter: none;
     }
 }

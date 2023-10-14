@@ -4,6 +4,13 @@
   import pokemonData from '../lib/db/pokemons.json';
   import fs from 'fs';
 
+  // const data = { name: 'John TOTO', age: 34 };
+//   const json = JSON.stringify(data);
+// fs.writeFile('test.json', json, (err) => {
+//   if (err) throw err;
+//   console.log('The file has been saved!');
+// }); 
+
   let pokemon = [...pokemonData];
   let capturedPokemon = [];
   let interval;
@@ -30,9 +37,6 @@
 	interval = setInterval(() => {
       pokemon = shuffleArray([...pokemonData]);
       capturedPokemon = pokemon.slice(0, 1);
-
-	//   console.log("visiblePokemon", visiblePokemon)
-
       const randomPosition = setRandomPosition();
       const randomContainer = document.querySelector(".random__container");
 
@@ -61,26 +65,30 @@ onDestroy(() => {
 		image: capturedPokemon[0].sprites.front_default,
 	};
 
-	// console.log(pokemon)
-
-	// WriteFile()
-	// const data = { name: 'John Doe', age: 34 };
-
-	// const json = JSON.stringify(data);
-
-
-
-	// fs.writeFile('test.json', json, (err) => {
-	// 	if (err) throw err;
-	// 	console.log('The file has been saved!');
-	// });
-
     const bagData = JSON.parse(localStorage.getItem('bag')) || [];
 
     bagData.push(pokemon);
 
     localStorage.setItem('bag', JSON.stringify(bagData));
+
+    const homeSection = document.querySelector('.home');
+    const div = document.createElement('div');
+    div.classList.add('catched');
+    div.innerHTML = `<p>${pokemon.name} attrapé !</p>`;
+    homeSection.appendChild(div);
+
+    const img = document.querySelector('.item');
+    img.classList.add('catched__item');
+
+    if (window.location.pathname === '/') {
+      setTimeout(() => {
+      const catched = document.querySelector('.catched');
+      catched.remove();
+    }, 2000);
+    };
   };
+
+  
 </script>
 
 <svelte:head>
@@ -105,7 +113,10 @@ onDestroy(() => {
       </div>
     {/each}
   </div>
-  <!-- <p>Nombre de pokemons attrapés :
-    <span>{visiblePokemon.length}</span>
-  </p> -->
+  <div class="bag__count">
+    <!-- <p>
+      Vous avez {JSON.parse(localStorage.getItem('bag'))?.length || 0} pokemon
+      dans votre sac
+    </p> -->
+  </div>
 </section>

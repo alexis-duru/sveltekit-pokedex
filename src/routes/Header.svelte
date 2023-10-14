@@ -1,8 +1,7 @@
 <script>
-	import { page } from '$app/stores';
-	import logo from '$lib/images/svelte-logo.svg';
-	import github from '$lib/images/github.svg';
-	
+		//@ts-nocheck
+	import { onMount } from 'svelte';
+
 	const linksNavigation = [
 		{
 			name: 'Home',
@@ -17,6 +16,11 @@
 			url: '/bag',
 		},
 	];
+
+	let currentPath = '';
+  onMount(() => {
+    currentPath = window.location.pathname;
+  });
 </script>
 
 <header>
@@ -24,7 +28,7 @@
 		<ul>
 			{#each linksNavigation as link}
 				<li>
-					<a href={link.url}>{link.name}</a>
+					<a href={link.url} class:active={link.url === currentPath}>{link.name}</a>
 				</li>
 			{/each}
 		</ul>
