@@ -11,8 +11,25 @@
 	  const interval = setInterval(() => {
 		pokemon = shuffleArray([...pokemonData]);
 		
-		visiblePokemon = pokemon.slice(0, 1);
-	  }, 3000);
+	visiblePokemon = pokemon.slice(0, 1);
+
+
+    function setRandomPosition() {
+        const windowHeight = window.innerHeight;
+        const windowWidth = window.innerWidth;
+
+        const randomTop = Math.floor(Math.random() * (windowHeight - 200));
+        const randomLeft = Math.floor(Math.random() * (windowWidth - 200));
+    	const randomContainer = document.querySelector(".random__container");
+
+        randomContainer.style.top = `${randomTop}px`;
+        randomContainer.style.left = `${randomLeft}px`;
+	}
+    setRandomPosition();
+
+    window.addEventListener("resize", setRandomPosition);
+
+	  }, 2000);
   
 	  return () => clearInterval(interval);
 	});
@@ -24,6 +41,7 @@
 	  }
 	  return array;
 	}
+
   </script>
   
   <svelte:head>
@@ -33,10 +51,12 @@
   
   <section class="home">
 	<h1>Attraper un pokemon</h1>
-	{#each visiblePokemon as poke}
-	  <div class="item">
-		<p>{poke.name}</p>
-		<img src={poke.sprites.front_default} alt={poke.name} />
-	  </div>
-	{/each}
+	<div class="random__container">
+		{#each visiblePokemon as poke}
+		<div class="item">
+			<p>{poke.name}</p>
+			<img src={poke.sprites.front_default} alt={poke.name} />
+		</div>
+		{/each}
+	</div>
   </section>
