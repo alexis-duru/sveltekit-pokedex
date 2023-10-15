@@ -17,10 +17,19 @@
 		},
 	];
 
-	let currentPath = '';
-  onMount(() => {
-    currentPath = window.location.pathname;
-  });
+	const activeLink = () => {
+		const links = document.querySelectorAll('nav ul li a');
+		links.forEach((link) => {
+			link.addEventListener('click', () => {
+				links.forEach((link) => {
+					link.classList.remove('active');
+				});
+
+				link.classList.add('active');
+			});
+
+		});
+	};
 </script>
 
 <header>
@@ -28,7 +37,12 @@
 		<ul>
 			{#each linksNavigation as link}
 				<li>
-					<a href={link.url} class:active={link.url === currentPath}>{link.name}</a>
+					<a
+					 href={link.url} 
+					 on:click={activeLink}
+					 >
+					 {link.name}
+					</a>
 				</li>
 			{/each}
 		</ul>

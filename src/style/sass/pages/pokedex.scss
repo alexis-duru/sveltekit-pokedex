@@ -23,7 +23,6 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        cursor: pointer;
         filter: grayscale(1);
         p, img {
             filter: blur(3px);
@@ -31,6 +30,7 @@
     }
     .captured {
         filter: grayscale(0);
+        cursor: pointer;
         p, img {
             filter: blur(0px);
         }

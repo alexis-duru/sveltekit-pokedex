@@ -33,10 +33,19 @@
   </svelte:head>
   
   <section class="pokedex">
-	{#each pokemonData as poke (poke.id)}
-    <div class="item" data-id={poke.id} class:captured={bagData.some((pokemon) => pokemon.id === poke.id)}>
-      <p>{poke.name}</p>
-      <img src={poke.sprites.front_default} alt={poke.name} />
-    </div>
-  {/each}
+    {#each pokemonData as poke (poke.id)}
+      {#if bagData.some((pokemon) => pokemon.id === poke.id)}
+        <a href="/pokedex/{poke.id}">
+          <div class="item" data-id={poke.id} class:captured={bagData.some((pokemon) => pokemon.id === poke.id)}>
+            <p>{poke.name}</p>
+            <img src={poke.sprites.front_default} alt={poke.name} />
+          </div>
+        </a>
+      {:else}
+        <div class="item" data-id={poke.id} class:captured={bagData.some((pokemon) => pokemon.id === poke.id)}>
+          <p>{poke.name}</p>
+          <img src={poke.sprites.front_default} alt={poke.name} />
+        </div>
+      {/if}
+    {/each}
   </section>
