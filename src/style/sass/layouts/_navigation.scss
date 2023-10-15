@@ -13,6 +13,13 @@ header {
     border-radius: 50px;
     transition: 0.3s ease-in-out;
     border: 1px solid transparent;
+    h1 {
+        position: fixed;
+        top: 2.5rem;
+        left: 2.5rem;
+        color: black;
+        font-size: 2rem;
+    }
     nav ul {
         display: flex;
         gap: 2rem;

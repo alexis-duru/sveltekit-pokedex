@@ -14,6 +14,18 @@
   let pokemon = [...pokemonData];
   let capturedPokemon = [];
   let interval;
+  let isAuthenticated = false;
+  let error = '';
+
+  onMount(() => {
+        const storedUser = localStorage.getItem('user');
+        const user = JSON.parse(storedUser);
+
+        if (user) {
+            isAuthenticated = true;
+        }
+  });
+
 
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -54,7 +66,12 @@ onDestroy(() => {
 
 
   const handleClick = () => {
-    const { id, name } = capturedPokemon[0]
+    if (!isAuthenticated) {
+      // Desactiver le click sur les pokemons
+      error = 'Vous devez vous inscrire ou être connecté pour attraper un pokemon.';
+      return
+    }
+  const { id, name } = capturedPokemon[0]
 
 	const uuid = Math.floor(Math.random() * 1000000);
 
@@ -97,6 +114,9 @@ onDestroy(() => {
 </svelte:head>
 
 <section class="home">
+  {#if error}
+    <div class="notification-error">{error}</div>
+  {/if}
   <h1>Attraper un pokemon</h1>
   <div class="random__container">
     {#each capturedPokemon as poke (poke.id)}
