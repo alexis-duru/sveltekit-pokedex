@@ -33,7 +33,7 @@
     <meta name="description" content="Pokedex Page" />
 </svelte:head>
 
-<section class="pokedex">
+<section class="">
     <div class="item" data-id={pokemon.id} class:captured={isCaptured}>
         <p>{pokemon.name}</p>
         <p>{pokemon.id}</p>

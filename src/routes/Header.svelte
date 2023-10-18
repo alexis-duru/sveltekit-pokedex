@@ -69,7 +69,6 @@
 </script>
 
 <header>
-	<!-- If is authenticated, bonjour user.username sinon "" -->
 	<h1>{isAuthenticated ? `Bonjour ${user.username} !` : ''}</h1>
 	{#if error}
 		<div class="notification-error">{error}</div>

@@ -13,7 +13,6 @@
         const user = JSON.parse(storedUser);
 
         if (user.username !== username || user.password !== password) {
-            console.log(user.username, username, user.password, password)
             error = 'Le nom d\'utilisateur ou le mot de passe est incorrect.';
             setTimeout(() => {
                 error = '';
