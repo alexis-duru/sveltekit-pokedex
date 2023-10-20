@@ -86,6 +86,8 @@ onDestroy(() => {
 
     bagData.push(pokemon);
 
+    console.log("localStorage", "home");
+
     localStorage.setItem('bag', JSON.stringify(bagData));
 
     const homeSection = document.querySelector('.home');
@@ -99,8 +101,10 @@ onDestroy(() => {
 
     if (window.location.pathname === '/') {
       setTimeout(() => {
-      const catched = document.querySelector('.catched');
-      catched.remove();
+        const catched = document.querySelector('.catched');
+        if (catched) {
+          catched.remove();
+        }
     }, 2000);
     };
   };

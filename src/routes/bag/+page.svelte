@@ -34,6 +34,7 @@
 				<div class="item">
 					<p>{poke.name}</p>
 					<img src={poke.image} alt={poke.name} />
+					<a href="/pokedex/{poke.id}">Voir Détails</a>
 					<button on:click={() => handleDelete(poke.uuid)}>Libérer</button>
 				</div>
 			{/each}
