@@ -1,4 +1,4 @@
-import pokemons from '../../lib/db/pokemons.json';
+import pokemons from '../../../lib/db/pokemons.json';
 
 export const load = async () => {
 	return {

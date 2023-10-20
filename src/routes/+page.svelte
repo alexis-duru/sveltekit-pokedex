@@ -76,6 +76,10 @@ onDestroy(() => {
 		image: capturedPokemon[0].sprites.front_default,
 	};
 
+    const seenData = JSON.parse(localStorage.getItem('seen')) || [];
+    seenData.push(pokemon);
+    localStorage.setItem('seen', JSON.stringify(seenData));
+
     const bagData = JSON.parse(localStorage.getItem('bag')) || [];
     bagData.push(pokemon);
     localStorage.setItem('bag', JSON.stringify(bagData));
