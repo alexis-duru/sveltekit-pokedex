@@ -43,7 +43,7 @@
 	interval = setInterval(() => {
       shuffleArray(pokemon);
       capturedPokemon = pokemon.slice(0, 1);
-      console.log("captured pokemon", capturedPokemon)
+      // console.log("captured pokemon", capturedPokemon)
       const randomPosition = setRandomPosition();
       const randomContainer = document.querySelector(".random__container");
 
@@ -76,14 +76,8 @@ onDestroy(() => {
 		image: capturedPokemon[0].sprites.front_default,
 	};
 
-    console.log(pokemon);
-
     const bagData = JSON.parse(localStorage.getItem('bag')) || [];
-
     bagData.push(pokemon);
-
-    console.log("localStorage", "home");
-
     localStorage.setItem('bag', JSON.stringify(bagData));
 
     const homeSection = document.querySelector('.home');
