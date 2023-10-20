@@ -1,17 +1,11 @@
 <script>
-	//@ts-nocheck
+  // @ts-nocheck
   import { onMount, onDestroy } from 'svelte';
-  import pokemonData from '../lib/db/pokemons.json';
-  import fs from 'fs';
+  // import pokemonJson from '../lib/db/pokemons.json';
+  // console.log(pokemonJson)
 
-  // const data = { name: 'John TOTO', age: 34 };
-//   const json = JSON.stringify(data);
-// fs.writeFile('test.json', json, (err) => {
-//   if (err) throw err;
-//   console.log('The file has been saved!');
-// }); 
-
-  let pokemon = [...pokemonData];
+  export let data;
+  let pokemon = data.pokemons;
   let capturedPokemon = [];
   let interval;
   let isAuthenticated = false;
@@ -47,8 +41,9 @@
 
   onMount(() => {
 	interval = setInterval(() => {
-      pokemon = shuffleArray([...pokemonData]);
+      shuffleArray(pokemon);
       capturedPokemon = pokemon.slice(0, 1);
+      console.log("captured pokemon", capturedPokemon)
       const randomPosition = setRandomPosition();
       const randomContainer = document.querySelector(".random__container");
 
@@ -58,7 +53,7 @@
       }
 
     }, 2000);
-});
+  });
 
 onDestroy(() => {
 	clearInterval(interval);
@@ -67,7 +62,6 @@ onDestroy(() => {
 
   const handleClick = () => {
     if (!isAuthenticated) {
-      // Desactiver le click sur les pokemons
       error = 'Vous devez vous inscrire ou être connecté pour attraper un pokemon.';
       return
     }
@@ -81,6 +75,8 @@ onDestroy(() => {
 		name,
 		image: capturedPokemon[0].sprites.front_default,
 	};
+
+    console.log(pokemon);
 
     const bagData = JSON.parse(localStorage.getItem('bag')) || [];
 
@@ -107,9 +103,7 @@ onDestroy(() => {
         }
     }, 2000);
     };
-  };
-
-  
+  };  
 </script>
 
 <svelte:head>
@@ -136,11 +130,5 @@ onDestroy(() => {
         <img src={poke.sprites.front_default} alt={poke.name} />
       </div>
     {/each}
-  </div>
-  <div class="bag__count">
-    <!-- <p>
-      Vous avez {JSON.parse(localStorage.getItem('bag'))?.length || 0} pokemon
-      dans votre sac
-    </p> -->
   </div>
 </section>

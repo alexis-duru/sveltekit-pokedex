@@ -13,12 +13,18 @@ header {
     border-radius: 50px;
     transition: 0.3s ease-in-out;
     border: 1px solid transparent;
-    h1 {
+    .authentication {
         position: fixed;
         top: 2.5rem;
         left: 2.5rem;
         color: black;
-        font-size: 2rem;
+        background: white;
+        border: 1px solid black;
+        padding: 1rem;
+        z-index: 10;
+        p {
+            font-size: 1.5rem;
+        }
     }
     nav ul {
         display: flex;

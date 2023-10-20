@@ -6,6 +6,7 @@
     let validate = '';
     let isAuthenticated = false;
 	let user = {};
+    let bag = [];
 
     onMount(() => {
         const storedUser = localStorage.getItem('user');
@@ -19,6 +20,7 @@
     const handleSignOut = () => {
         localStorage.removeItem('user');
 		localStorage.removeItem('bag');
+        localStorage.removeItem('seen');
 		isAuthenticated = false;
         validate = 'Vous êtes maintenant déconnecté. Vous allez être redirigé vers la page d\'accueil.';
         setTimeout(() => {
@@ -66,10 +68,25 @@
 		const storedUser = localStorage.getItem('user');
 		user = JSON.parse(storedUser);
 	});
+
+    onMount(() => {
+        const storedBag = localStorage.getItem('bag');
+        bag = JSON.parse(storedBag);
+    });
+
 </script>
 
 <header>
-	<h1>{isAuthenticated ? `Bonjour ${user.username} !` : ''}</h1>
+    {#if isAuthenticated}
+    <div class="authentication">
+        <p>Bonjour {user.username} !</p>
+        {#if bag}
+            {#if bag.length > 0}
+                <p>{bag.length} pokemon{#if bag.length > 1}s{/if} capturé{#if bag.length > 1}s{/if}</p>
+            {/if}
+        {/if}
+    </div>
+    {/if}
 	{#if error}
 		<div class="notification-error">{error}</div>
 	{/if}

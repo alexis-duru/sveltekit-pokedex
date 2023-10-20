@@ -2,12 +2,12 @@
 	//@ts-nocheck
 	import { onMount } from 'svelte';
 	import pokemonData from '../../lib/db/pokemons.json';
-	let bagData = [];
+	let seenData = [];
 
 	try {
-		const bagDataString = localStorage.getItem('bag');
-		if (bagDataString) {
-			bagData = JSON.parse(bagDataString);
+		const seenDataString = localStorage.getItem('seen');
+		if (seenDataString) {
+			seenData = JSON.parse(seenDataString);
 		}
 	} catch (error) {
 		console.error('Error parsing bag data:', error);
@@ -18,7 +18,7 @@
 
     pokedexItems.forEach((item) => {
       const pokemonId = parseInt(item.dataset.id, 10);
-      const isCaptured = bagData.some((pokemon) => pokemon.id === pokemonId);
+      const isCaptured = seenData.some((pokemon) => pokemon.id === pokemonId);
 
       if (isCaptured) {
         item.classList.add('captured');
@@ -34,15 +34,15 @@
   
   <section class="pokedex">
     {#each pokemonData as poke (poke.id)}
-      {#if bagData.some((pokemon) => pokemon.id === poke.id)}
+      {#if seenData.some((pokemon) => pokemon.id === poke.id)}
         <a href="/pokedex/{poke.id}">
-          <div class="item" data-id={poke.id} class:captured={bagData.some((pokemon) => pokemon.id === poke.id)}>
+          <div class="item" data-id={poke.id} class:captured={seenData.some((pokemon) => pokemon.id === poke.id)}>
             <p>{poke.name}</p>
             <img src={poke.sprites.front_default} alt={poke.name} />
           </div>
         </a>
       {:else}
-        <div class="item" data-id={poke.id} class:captured={bagData.some((pokemon) => pokemon.id === poke.id)}>
+        <div class="item" data-id={poke.id} class:captured={seenData.some((pokemon) => pokemon.id === poke.id)}>
           <p>{poke.name}</p>
           <img src={poke.sprites.front_default} alt={poke.name} />
         </div>
