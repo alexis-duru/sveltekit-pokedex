@@ -1,15 +1,23 @@
 <script>
 	//@ts-nocheck
+	import { onMount } from 'svelte';
 	let bagData = [];
 
-	try {
-	const bagDataString = localStorage.getItem('bag');
-		if (bagDataString) {
-			bagData = JSON.parse(bagDataString);
-		}
-	} catch (error) {
-		console.error('Error parsing bag data:', error);
-	}
+	const fetchData = async () => {
+    try {
+      const response = await fetch('/api/bag');
+      const data = await response.json();
+      bagData = data;
+	  console.log('Données récupérées depuis la route GET :', data);	
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données depuis la route GET :', error);
+    }
+  };
+
+  onMount(() => {
+    fetchData();
+  });
+
 
 	const handleDelete = (uuid) => {
     bagData = bagData.filter((pokemon) => pokemon.uuid !== uuid);

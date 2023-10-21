@@ -58,7 +58,7 @@ onDestroy(() => {
   });
 
 
-  const handleClick = () => {
+  const handleClick = async () => {
     if (!isAuthenticated) {
       error = 'Vous devez vous inscrire ou être connecté pour attraper un pokemon.';
       return
@@ -74,13 +74,26 @@ onDestroy(() => {
 		image: capturedPokemon[0].sprites.front_default,
 	};
 
+    try {
+      const response = await fetch('/api/bag', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(pokemon),
+      });
+    } catch (error) {
+      console.log(error);
+    }
+    
+
     const seenData = JSON.parse(localStorage.getItem('seen')) || [];
     seenData.push(pokemon);
     localStorage.setItem('seen', JSON.stringify(seenData));
 
-    const bagData = JSON.parse(localStorage.getItem('bag')) || [];
-    bagData.push(pokemon);
-    localStorage.setItem('bag', JSON.stringify(bagData));
+    // const bagData = JSON.parse(localStorage.getItem('bag')) || [];
+    // bagData.push(pokemon);
+    // localStorage.setItem('bag', JSON.stringify(bagData));
 
     const homeSection = document.querySelector('.home');
     const div = document.createElement('div');
@@ -111,7 +124,7 @@ onDestroy(() => {
   {#if error}
     <div class="notification-error">{error}</div>
   {/if}
-  <h1>Attraper un pokemon</h1>
+  <!-- <h1>Attraper un pokemon</h1> -->
   <div class="random__container">
     {#each capturedPokemon as poke (poke.id)}
       <div

@@ -1,5 +1,7 @@
 import pokemons from '../lib/db/pokemons.json';
 import fs from 'fs';
+import { json } from '@sveltejs/kit';
+
 
 export const load = async () => {
 	return {
@@ -7,57 +9,34 @@ export const load = async () => {
 	};
 };
 
-// const datas = { name: 'John TOTO', age: 34 };
-// const json = JSON.stringify(datas);
-// function writeJsonToFile(json, filePath) {
-// 	fs.writeFile(filePath, json, (err) => {
-// 		if (err) throw err;
-// 		console.log('The file has been saved!');
-// 	});
+// export async function POST({ request }:any) {
+// 	const { a, b } = await request.json();
+// 	return json(a + b);
 // }
-
-// writeJsonToFile(json, 'test.json');
-
-// export const saveData = async (data:any, filePath:any) => {
-// 	const fullPath = resolve(__dirname, `../../lib/data/${filePath}`);
-// 	try {
-// 	  const json = JSON.stringify(data);
-// 	  await new Promise((resolve, reject) => {
-// 		fs.writeFile(fullPath, json, (err) => {
-// 		  if (err) {
-// 			reject(err);
-// 		  } else {
-// 			resolve(json);
-// 		  }
-// 		});
-// 	  });
-// 	  console.log('Les données ont été enregistrées avec succès dans', fullPath);
-// 	} catch (error) {
-// 	  console.error('Erreur lors de l\'enregistrement des données :', error);
-// 	  throw error;
-// 	}
-//   };
-
 export const _saveData = async (data:any, filePath:any) => {
 	try {
-	  const json = JSON.stringify(data);
-	  await new Promise((resolve, reject) => {
-		fs.writeFile(filePath, json, (err) => {
-		  if (err) {
-			reject(err);
-		  } else {
-			resolve(json);
-		  }
-		});
-	  });
-	  console.log('Les données ont été enregistrées avec succès dans', filePath);
-	} catch (error) {
-	  console.error('Erreur lors de l\'enregistrement des données :', error);
-	  throw error; 
-	}
-  }
+        let existingData = [];
+        try {
+            const rawData = await fs.promises.readFile(filePath, 'utf-8');
+            existingData = JSON.parse(rawData);
+            if (!Array.isArray(existingData)) {
+                existingData = [];
+            }
+        } catch (readError) {
+			console.log('Le fichier', filePath, "n'existe pas. Il va être créé.");
+        }
+        existingData.push(data);
+        await fs.promises.writeFile(filePath, JSON.stringify(existingData, null, 2), 'utf-8');
+        console.log('Les données ont été enregistrées avec succès dans', filePath);
+    } catch (error) {
+        console.error("Erreur lors de l'enregistrement des données :", error);
+        throw error;
+    }
+};
 
-  _saveData({name: 'sqdsqdqd', age: 34}, 'src/lib/db/test.json');
+// test de saveData
+// const data = {name: 'corine', age: 34};
+// _saveData(data, 'src/lib/db/test.json');
 
 
   
