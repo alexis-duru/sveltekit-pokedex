@@ -36,3 +36,25 @@
         }
     }
 }
+
+.pokedex__item {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    text-transform: capitalize;
+    img {
+        width: 250px;
+        height: 250px;
+    }
+    .name {
+        font-size: 3rem;
+    }
+    .number {
+        font-style: italic;
+        margin-top: 1rem;
+        font-weight: bold;
+    }
+}

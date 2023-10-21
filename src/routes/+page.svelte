@@ -1,8 +1,6 @@
 <script>
   // @ts-nocheck
   import { onMount, onDestroy } from 'svelte';
-  // import pokemonJson from '../lib/db/pokemons.json';
-  // console.log(pokemonJson)
 
   export let data;
   let pokemon = data.pokemons;
