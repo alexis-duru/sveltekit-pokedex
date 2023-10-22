@@ -8,14 +8,14 @@
 	let user = {};
     let bag = [];
 
-    onMount(() => {
-        const storedUser = localStorage.getItem('user');
-        const user = JSON.parse(storedUser);
+    // onMount(() => {
+    //     const storedUser = localStorage.getItem('user');
+    //     const user = JSON.parse(storedUser);
 
-        if (user) {
-            isAuthenticated = true;
-        }
-    });
+    //     if (user) {
+    //         isAuthenticated = true;
+    //     }
+    // });
 
     const handleSignOut = () => {
         localStorage.removeItem('user');
@@ -77,16 +77,16 @@
 </script>
 
 <header>
-    {#if isAuthenticated}
+    <!-- {#if isAuthenticated} -->
     <div class="authentication">
-        <p>Bonjour {user.username} !</p>
+        <!-- <p>Bonjour {user.username} !</p> -->
         {#if bag}
             {#if bag.length > 0}
                 <p>{bag.length} pokemon{#if bag.length > 1}s{/if} capturé{#if bag.length > 1}s{/if}</p>
             {/if}
         {/if}
     </div>
-    {/if}
+    <!-- {/if} -->
 	{#if error}
 		<div class="notification-error">{error}</div>
 	{/if}
@@ -95,7 +95,7 @@
     {/if}
     <nav>
         <ul>
-            {#if !isAuthenticated}
+            <!-- {#if !isAuthenticated} -->
                 {#each linksAuthenticated as link}
                     <li>
                         <a
@@ -106,8 +106,8 @@
                         </a>
                     </li>
                 {/each}
-            {/if}
-            {#if isAuthenticated}
+            <!-- {/if} -->
+            <!-- {#if isAuthenticated} -->
 				{#each linksNavigation as link}
 					<li>
 						<a
@@ -126,7 +126,7 @@
                         Sign Out
                     </a>
                 </li>
-            {/if}
+            <!-- {/if} -->
         </ul>
     </nav>
 

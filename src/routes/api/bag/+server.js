@@ -1,6 +1,8 @@
 import { json } from '@sveltejs/kit';
 import { _saveData } from '../../+page.server';
+// import { _getData } from '../../pokedex/+page.server';
 import fs from 'fs';
+// @ts-nocheck
 
 /** @type {import('./$types').RequestHandler} */
 export async function POST({ request }) {
@@ -15,15 +17,26 @@ export async function POST({ request }) {
 	}
 }
 
-// export async function GET() {
+// export async function fallback({ params }) {
 // 	try {
-// 		const jsonData = fs.readFileSync('src/lib/db/bag.json', 'utf8');
-// 		const data = JSON.parse(jsonData);
+// 		const itemId = params.id;
+// 		const filePath = 'src/lib/db/bag.json';
+// 		const jsonData = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
 
-// 		return json(data);
+// 		const itemIndex = jsonData.findIndex((item) => item.id === itemId);
+
+// 		if (itemIndex !== -1) {
+// 			jsonData.splice(itemIndex, 1);
+
+// 			fs.writeFileSync(filePath, JSON.stringify(jsonData, null, 2), 'utf-8');
+
+// 			return json({ message: "L'élément a été supprimé avec succès." });
+// 		} else {
+// 			return json({ error: "L'élément n'existe pas dans le fichier JSON." });
+// 		}
 // 	} catch (error) {
-// 		console.error('Erreur lors de la récupération des données JSON :', error);
-// 		return json({ error: 'Échec de la récupération des données' });
+// 		console.error("Erreur lors de la suppression de l'élément :", error);
+// 		return json({ error: "Échec de la suppression de l'élément." });
 // 	}
 // }
 

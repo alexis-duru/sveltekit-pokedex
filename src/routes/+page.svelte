@@ -3,19 +3,20 @@
   import { onMount, onDestroy } from 'svelte';
 
   export let data;
-  let pokemon = data.pokemons;
+  let pokemon = data.data.pokemons;
+  let user = data.data.users;
   let capturedPokemon = [];
   let interval;
   let isAuthenticated = false;
   let error = '';
 
   onMount(() => {
-        const storedUser = localStorage.getItem('user');
-        const user = JSON.parse(storedUser);
+        // const storedUser = localStorage.getItem('user');
+        // const user = JSON.parse(storedUser);
 
-        if (user) {
-            isAuthenticated = true;
-        }
+        // if (user) {
+        //     isAuthenticated = true;
+        // }
   });
 
 
@@ -38,7 +39,7 @@
   }
 
   onMount(() => {
-	interval = setInterval(() => {
+    interval = setInterval(() => {
       shuffleArray(pokemon);
       capturedPokemon = pokemon.slice(0, 1);
       // console.log("captured pokemon", capturedPokemon)
@@ -59,10 +60,10 @@ onDestroy(() => {
 
 
   const handleClick = async () => {
-    if (!isAuthenticated) {
-      error = 'Vous devez vous inscrire ou être connecté pour attraper un pokemon.';
-      return
-    }
+    // if (!isAuthenticated) {
+    //   error = 'Vous devez vous inscrire ou être connecté pour attraper un pokemon.';
+    //   return
+    // }
   const { id, name } = capturedPokemon[0]
 
 	const uuid = Math.floor(Math.random() * 1000000);

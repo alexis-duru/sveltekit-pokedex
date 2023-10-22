@@ -1,18 +1,17 @@
 import pokemons from '../lib/db/pokemons.json';
+import users from '../lib/db/user.json';
 import fs from 'fs';
-import { json } from '@sveltejs/kit';
 
 
 export const load = async () => {
 	return {
-		pokemons,
+		data : {
+            pokemons,
+            users,
+        }
 	};
 };
 
-// export async function POST({ request }:any) {
-// 	const { a, b } = await request.json();
-// 	return json(a + b);
-// }
 export const _saveData = async (data:any, filePath:any) => {
 	try {
         let existingData = [];

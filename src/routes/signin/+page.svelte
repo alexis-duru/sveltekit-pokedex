@@ -1,17 +1,16 @@
 <script>
-    //@ts-nocheck
-    import { onMount } from 'svelte';
-  
+    //@ts-nocheck  
+    export let data;
+    let users = data.user;
     let username = '';
     let password = '';
     let error = '';
     let validate = '';
+    let isAuthenticated = false;
     
   
-    const handleSignIn = () => {
-        const storedUser = localStorage.getItem('user');
-        const user = JSON.parse(storedUser);
-
+    const handleSignIn = async () => {
+        const user = users.find((u) => u.username === username && u.password === password);
         if (user.username !== username || user.password !== password) {
             error = 'Le nom d\'utilisateur ou le mot de passe est incorrect.';
             setTimeout(() => {
@@ -28,11 +27,21 @@
             return;
         }
 
-        validate = 'Vous êtes maintenant connecté. Vous allez être redirigé vers la page d\'accueil.';
-        setTimeout(() => {
-            validate = '';
-            location.href = '/';
-        }, 3000);
+        if (user) {
+            isAuthenticated = true;
+            validate = 'Vous êtes maintenant connecté. Vous allez être redirigé vers la page d\'accueil.';
+            setTimeout(() => {
+                validate = '';
+                location.href = '/';
+            }, 3000);
+
+            localStorage.setItem('isAuthenticated', 'true');
+        } else {
+            error = 'Le nom d\'utilisateur ou le mot de passe est incorrect.';
+            setTimeout(() => {
+                error = '';
+            }, 3000);
+        }
     };
 </script>
   
