@@ -85,15 +85,19 @@ onDestroy(() => {
     } catch (error) {
       console.log(error);
     }
-    
 
-    const seenData = JSON.parse(localStorage.getItem('seen')) || [];
-    seenData.push(pokemon);
-    localStorage.setItem('seen', JSON.stringify(seenData));
+    try {
+      const response = await fetch('/api/seen', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(pokemon),
+      });
+    } catch (error) {
+      console.log(error);
+    }
 
-    // const bagData = JSON.parse(localStorage.getItem('bag')) || [];
-    // bagData.push(pokemon);
-    // localStorage.setItem('bag', JSON.stringify(bagData));
 
     const homeSection = document.querySelector('.home');
     const div = document.createElement('div');

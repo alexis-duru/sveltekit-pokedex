@@ -1,0 +1,62 @@
+[
+  {
+    "id": 10,
+    "uuid": 683525,
+    "name": "caterpie",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10.png"
+  },
+  {
+    "id": 19,
+    "uuid": 510674,
+    "name": "rattata",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/19.png"
+  },
+  {
+    "id": 144,
+    "uuid": 862581,
+    "name": "articuno",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/144.png"
+  },
+  {
+    "id": 14,
+    "uuid": 156486,
+    "name": "kakuna",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/14.png"
+  },
+  {
+    "id": 130,
+    "uuid": 606293,
+    "name": "gyarados",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/130.png"
+  },
+  {
+    "id": 39,
+    "uuid": 710349,
+    "name": "jigglypuff",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/39.png"
+  },
+  {
+    "id": 74,
+    "uuid": 204466,
+    "name": "geodude",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/74.png"
+  },
+  {
+    "id": 71,
+    "uuid": 1283,
+    "name": "victreebel",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/71.png"
+  },
+  {
+    "id": 86,
+    "uuid": 156908,
+    "name": "seel",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/86.png"
+  },
+  {
+    "id": 31,
+    "uuid": 247241,
+    "name": "nidoqueen",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/31.png"
+  }
+]

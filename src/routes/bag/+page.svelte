@@ -1,29 +1,57 @@
 <script>
 	//@ts-nocheck
 	import { onMount } from 'svelte';
-	let bagData = [];
+	// let bagData = [];
 
-	const fetchData = async () => {
+  export let data;
+  let bagData = data.pokemons;
+
+  console.log('Données récupérées depuis la route GET :', data);
+  
+
+	// const fetchData = async () => {
+  //   try {
+  //     const response = await fetch('/api/bag');
+  //     const data = await response.json();
+  //     bagData = data;
+	//   console.log('Données récupérées depuis la route GET :', data);	
+  //   } catch (error) {
+  //     console.error('Erreur lors de la récupération des données depuis la route GET :', error);
+  //   }
+  // };
+
+  // onMount(() => {
+  //   fetchData();
+  // });
+
+
+// 	const handleDelete = (uuid) => {
+//     bagData = bagData.filter((pokemon) => pokemon.uuid !== uuid);
+
+//     localStorage.setItem('bag', JSON.stringify(bagData));
+//   };
+
+  const handleDelete = async (uuid) => {
     try {
-      const response = await fetch('/api/bag');
-      const data = await response.json();
-      bagData = data;
-	  console.log('Données récupérées depuis la route GET :', data);	
+      const response = await fetch(`/api/bag`, {
+        method: 'DELETE',
+      });
+
+	  console.log('Données supprimées depuis la route DELETE :', response)
+
+      if (response.ok) {
+        bagData = bagData.filter((pokemon) => pokemon.uuid !== uuid);
+      } else {
+        console.error('Échec de la suppression des données depuis la route DELETE');
+      }
     } catch (error) {
-      console.error('Erreur lors de la récupération des données depuis la route GET :', error);
+      console.error('Erreur lors de la suppression des données depuis la route DELETE :', error);
     }
   };
 
   onMount(() => {
-    fetchData();
+	handleDelete();
   });
-
-
-	const handleDelete = (uuid) => {
-    bagData = bagData.filter((pokemon) => pokemon.uuid !== uuid);
-
-    localStorage.setItem('bag', JSON.stringify(bagData));
-  };
 
 </script>
 

@@ -8,15 +8,6 @@
     let pokemonId = 0;
     let pokemon = {};
 
-    try {
-        const bagDataString = localStorage.getItem('bag');
-        if (bagDataString) {
-            bagData = JSON.parse(bagDataString);
-        }
-    } catch (error) {
-        console.error('Error parsing bag data:', error);
-    }
-
     onMount(() => {
         const pokemonIdString = window.location.pathname.split('/').pop();
         pokemonId = parseInt(pokemonIdString, 10);

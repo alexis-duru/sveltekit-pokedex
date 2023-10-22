@@ -69,10 +69,10 @@
 		user = JSON.parse(storedUser);
 	});
 
-    onMount(() => {
-        const storedBag = localStorage.getItem('bag');
-        bag = JSON.parse(storedBag);
-    });
+    // onMount(() => {
+    //     const storedBag = localStorage.getItem('bag');
+    //     bag = JSON.parse(storedBag);
+    // });
 
 </script>
 
