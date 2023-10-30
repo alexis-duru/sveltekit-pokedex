@@ -1,6 +1,59 @@
 [
   {
+    "id": 521,
     "username": "alexis",
     "password": "alexis"
+  },
+  {
+    "id": 701,
+    "username": "michel",
+    "password": "michel"
+  },
+  {
+    "id": 821,
+    "username": "jeanfrancais",
+    "password": "jeanfrancais"
+  },
+  {
+    "id": 700,
+    "username": "alexiaa",
+    "password": "alexiaa"
+  },
+  {
+    "id": 221,
+    "username": "francis",
+    "password": "francis"
+  },
+  {
+    "id": 149,
+    "username": "papa",
+    "password": "papa"
+  },
+  {
+    "id": 706,
+    "username": "ouiouioui",
+    "password": "ouiouioui"
+  },
+  {
+    "id": 171,
+    "username": "jeremie",
+    "password": "jeremie"
+  },
+  {
+    "id": 796,
+    "username": "kiki",
+    "password": "kiki"
+  },
+  {
+    "id": 631,
+    "username": "franck",
+    "password": "franck",
+    "isAuthenticated": true
+  },
+  {
+    "id": 403,
+    "username": "coucou",
+    "password": "coucou",
+    "isAuthenticated": true
   }
 ]

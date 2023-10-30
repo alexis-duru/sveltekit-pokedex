@@ -1,18 +1,24 @@
 <script>
-    //@ts-nocheck
+// @ts-nocheck
+
     import { onMount } from 'svelte';
 
     export let data;
     let pokemonData = data.pokemons;
+    /**
+	 * @type {any[]}
+	 */
     let bagData = [];
     let pokemonId = 0;
-    let pokemon = {};
+    let pokemon = {}
 
     onMount(() => {
-        const pokemonIdString = window.location.pathname.split('/').pop();
+    let pokemonIdString = window.location.pathname.split('/').pop();
+    if (pokemonIdString) {
         pokemonId = parseInt(pokemonIdString, 10);
         pokemon = pokemonData.find((poke) => poke.id === pokemonId);
-    });
+    }
+});
 
     const isCaptured = bagData.some((pokemon) => pokemon.id === pokemonId);
 </script>
@@ -34,4 +40,3 @@
     {/if}
     </div>
 </section>
-

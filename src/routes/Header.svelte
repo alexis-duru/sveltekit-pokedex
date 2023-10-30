@@ -1,33 +1,22 @@
 <script>
     //@ts-nocheck
-    import { onMount } from 'svelte';
-
     let error = '';
     let validate = '';
-    let isAuthenticated = false;
-	let user = {};
-    let bag = [];
+    // let isAuthenticated = false;
+    /**
+	 * @type {string | any[]}
+	 */
 
-    // onMount(() => {
-    //     const storedUser = localStorage.getItem('user');
-    //     const user = JSON.parse(storedUser);
 
-    //     if (user) {
-    //         isAuthenticated = true;
-    //     }
-    // });
+    export let data;
+    const { bagData } = data;
+    const { users } = data;
 
-    const handleSignOut = () => {
-        localStorage.removeItem('user');
-		localStorage.removeItem('bag');
-        localStorage.removeItem('seen');
-		isAuthenticated = false;
-        validate = 'Vous êtes maintenant déconnecté. Vous allez être redirigé vers la page d\'accueil.';
-        setTimeout(() => {
-            validate = '';
-            location.href = '/';
-        }, 3000);
-    };
+    // $: data;
+    // $: console.log(users)
+
+    const isAuthenticated = users.filter((user) => user.isAuthenticated === true ).slice(-1);
+    const name = isAuthenticated.map((user) => user.username);
 
     const linksNavigation = [
         {
@@ -64,29 +53,20 @@
         event.target.classList.add('active');
     };
 
-	onMount(() => {
-		const storedUser = localStorage.getItem('user');
-		user = JSON.parse(storedUser);
-	});
+    const handleSignOut = () => {
 
-    // onMount(() => {
-    //     const storedBag = localStorage.getItem('bag');
-    //     bag = JSON.parse(storedBag);
-    // });
-
+    };
 </script>
 
 <header>
-    <!-- {#if isAuthenticated} -->
     <div class="authentication">
-        <!-- <p>Bonjour {user.username} !</p> -->
-        {#if bag}
-            {#if bag.length > 0}
-                <p>{bag.length} pokemon{#if bag.length > 1}s{/if} capturé{#if bag.length > 1}s{/if}</p>
+        <p>Bonjour {name} !</p>
+        {#if bagData}
+            {#if bagData.length > 0}
+                <p>{bagData.length} pokemon{#if bagData.length > 1}s{/if} capturé{#if bagData.length > 1}s{/if}</p>
             {/if}
         {/if}
     </div>
-    <!-- {/if} -->
 	{#if error}
 		<div class="notification-error">{error}</div>
 	{/if}
@@ -95,8 +75,7 @@
     {/if}
     <nav>
         <ul>
-            <!-- {#if !isAuthenticated} -->
-                {#each linksAuthenticated as link}
+            {#each linksAuthenticated as link}
                     <li>
                         <a
                             href={link.url}
@@ -106,8 +85,7 @@
                         </a>
                     </li>
                 {/each}
-            <!-- {/if} -->
-            <!-- {#if isAuthenticated} -->
+
 				{#each linksNavigation as link}
 					<li>
 						<a
@@ -119,14 +97,13 @@
 					</li>
 				{/each}
                 <li>
-                    <a
+                    <!-- <a
                         href="/"
                         on:click={handleSignOut}
                     >
                         Sign Out
-                    </a>
+                    </a> -->
                 </li>
-            <!-- {/if} -->
         </ul>
     </nav>
 

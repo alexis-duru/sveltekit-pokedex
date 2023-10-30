@@ -12,7 +12,7 @@ export const load = async () => {
 
 // export const del = async (request) => {
 // 	const { id } = request.params;
-// 	const { seenData } = await load(); // Assurez-vous d'obtenir seenData à partir de la fonction load
+// 	const { seenData } = await load();
   
 // 	// Trouvez l'index de l'élément à supprimer
 // 	const index = seenData.findIndex((d) => d.id === id);

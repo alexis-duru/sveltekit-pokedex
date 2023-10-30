@@ -1,10 +1,18 @@
 <script>
-	import Header from './Header.svelte';
+// @ts-nocheck
+
+	import Header from './header.svelte';
 	import '../style/sass/globals.scss';
+	import { onMount } from 'svelte';
+	/** @type {import('./$types').LayoutData} */
+
+	export let data;
 </script>
 
 <div class="app">
-	<Header />
+	<Header
+		{...data}
+	 />
 
 	<main>
 		<slot />

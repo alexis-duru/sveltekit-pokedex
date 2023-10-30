@@ -3,10 +3,10 @@
     width: auto;
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     position: relative;
-    padding: 5rem;
+    padding: 15rem 5rem;
     h1 {
         position: fixed;
         top: 50%;
@@ -24,6 +24,12 @@
         justify-content: center;
         flex-direction: column;
         filter: grayscale(1);
+        img {
+            transition: 0.3s ease-in-out;
+            &:hover {
+                opacity: 0.8;
+            }
+        }
         p, img {
             filter: blur(3px);
         }

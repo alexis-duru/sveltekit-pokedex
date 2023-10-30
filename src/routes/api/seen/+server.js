@@ -1,6 +1,5 @@
 import { json } from '@sveltejs/kit';
 import { _saveData } from '../../+page.server';
-import fs from 'fs';
 
 /** @type {import('./$types').RequestHandler} */
 export async function POST({ request }) {

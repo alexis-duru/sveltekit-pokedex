@@ -4,20 +4,18 @@
 
   export let data;
   let pokemon = data.data.pokemons;
-  let user = data.data.users;
   let capturedPokemon = [];
   let interval;
-  let isAuthenticated = false;
   let error = '';
+  // let user = data.data.users;
+  // let isAuthenticated = false;
 
-  onMount(() => {
-        // const storedUser = localStorage.getItem('user');
-        // const user = JSON.parse(storedUser);
-
-        // if (user) {
-        //     isAuthenticated = true;
-        // }
-  });
+  // onMount(() => {
+  //       const storedUser = localStorage.getItem('isAuthenticated');
+  //       if (user) {
+  //           isAuthenticated = true;
+  //       }
+  // });
 
 
   function shuffleArray(array) {
@@ -42,7 +40,6 @@
     interval = setInterval(() => {
       shuffleArray(pokemon);
       capturedPokemon = pokemon.slice(0, 1);
-      // console.log("captured pokemon", capturedPokemon)
       const randomPosition = setRandomPosition();
       const randomContainer = document.querySelector(".random__container");
 
@@ -54,8 +51,8 @@
     }, 2000);
   });
 
-onDestroy(() => {
-	clearInterval(interval);
+  onDestroy(() => {
+	  clearInterval(interval);
   });
 
 
@@ -129,7 +126,6 @@ onDestroy(() => {
   {#if error}
     <div class="notification-error">{error}</div>
   {/if}
-  <!-- <h1>Attraper un pokemon</h1> -->
   <div class="random__container">
     {#each capturedPokemon as poke (poke.id)}
       <div

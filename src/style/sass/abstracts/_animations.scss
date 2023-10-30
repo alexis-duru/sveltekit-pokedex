@@ -33,7 +33,7 @@
 }
 
 .notification-validate {
-    animation: fadeText 3.2s ease-in-out;
+    animation: fadeText 3.2s ease-in-out both;
     position: absolute;
     top: 10rem;
     background-color: green;
@@ -45,6 +45,9 @@
     justify-content: center;
     text-align: center;
     font-size: 1.5rem;
+    width: auto;
+    white-space: nowrap;
+    right: 10rem;
     @keyframes fadeText {
         0% {
             opacity: 0;
@@ -59,7 +62,7 @@
 }
 
 .notification-error {
-    animation: fadeText 3.2s ease-in-out;
+    animation: fadeText 3.2s ease-in-out both;
     position: absolute;
     top: 10rem;
     background-color: red;
@@ -71,6 +74,9 @@
     justify-content: center;
     text-align: center;
     font-size: 1.5rem;
+    width: auto;
+    white-space: nowrap;
+    right: 10rem;
     @keyframes fadeText {
         0% {
             opacity: 0;
