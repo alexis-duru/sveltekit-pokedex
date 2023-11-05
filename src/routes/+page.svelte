@@ -7,16 +7,6 @@
   let capturedPokemon = [];
   let interval;
   let error = '';
-  // let user = data.data.users;
-  // let isAuthenticated = false;
-
-  // onMount(() => {
-  //       const storedUser = localStorage.getItem('isAuthenticated');
-  //       if (user) {
-  //           isAuthenticated = true;
-  //       }
-  // });
-
 
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -112,7 +102,7 @@
         if (catched) {
           catched.remove();
         }
-    }, 2000);
+      }, 2000);
     };
   };  
 </script>

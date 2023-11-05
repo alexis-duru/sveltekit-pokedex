@@ -1,10 +1,6 @@
 <script>
     /** @type {import('./$types').ActionData} */
         export let form; 
-
-        // const handleClick = () => {
-        //     localStorage.setItem('isAuthenticated', true);
-        // }
 </script>
   
 <section class="signin">

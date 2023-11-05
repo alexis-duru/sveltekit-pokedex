@@ -33,10 +33,6 @@ export const _saveData = async (data:any, filePath:any) => {
     }
 };
 
-// test de saveData
-// const data = {name: 'corine', age: 34};
-// _saveData(data, 'src/lib/db/test.json');
-
 
   
 

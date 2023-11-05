@@ -2,7 +2,6 @@
     //@ts-nocheck
     let error = '';
     let validate = '';
-    // let isAuthenticated = false;
     /**
 	 * @type {string | any[]}
 	 */
@@ -11,9 +10,6 @@
     export let data;
     const { bagData } = data;
     const { users } = data;
-
-    // $: data;
-    // $: console.log(users)
 
     const isAuthenticated = users.filter((user) => user.isAuthenticated === true ).slice(-1);
     const name = isAuthenticated.map((user) => user.username);
