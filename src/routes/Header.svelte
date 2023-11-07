@@ -1,10 +1,10 @@
 <script>
-    //@ts-nocheck
+    // @ts-nocheck
     let error = '';
     let validate = '';
-    /**
-	 * @type {string | any[]}
-	 */
+    // /**
+	//  * @type {string | any[]}
+	//  */
 
 
     export let data;
@@ -49,9 +49,9 @@
         event.target.classList.add('active');
     };
 
-    const handleSignOut = () => {
+    // const handleSignOut = () => {
 
-    };
+    // };
 </script>
 
 <header>

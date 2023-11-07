@@ -1,7 +1,7 @@
 <script>
 // @ts-nocheck
 
-	// import Header from './header.svelte';
+	import Header from './header.svelte';
 	import '../style/sass/globals.scss';
 	/** @type {import('./$types').LayoutData} */
 
@@ -9,9 +9,9 @@
 </script>
 
 <div class="app">
-	<!-- <Header
+	<Header
 		{...data}
-	 /> -->
+	 />
 
 	<main>
 		<slot />
