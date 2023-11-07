@@ -1,17 +1,17 @@
 <script>
 // @ts-nocheck
 
-	import Header from './header.svelte';
+	// import Header from './header.svelte';
 	import '../style/sass/globals.scss';
 	/** @type {import('./$types').LayoutData} */
 
-	export let data;
+	// export let data;
 </script>
 
 <div class="app">
-	<Header
+	<!-- <Header
 		{...data}
-	 />
+	 /> -->
 
 	<main>
 		<slot />
