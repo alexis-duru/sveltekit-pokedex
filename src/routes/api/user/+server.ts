@@ -2,10 +2,9 @@ import { json } from '@sveltejs/kit';
 import { _saveData } from '../../+page.server';
 import fs from 'fs/promises';
 
-// @ts-nocheck
 
 /** @type {import('./$types').RequestHandler} */
-export async function POST({ request }) {
+export async function POST({ request }:any) {
 	try {
 		const user = await request.json();
 		console.log('enregistrement de la donnée');
@@ -27,14 +26,14 @@ export async function GET() {
 	}
 }
 
-export async function DELETE({ request }) {
+export async function DELETE({ request }:any) {
 	try {
 		const body = await request.json();
 		const id = body.id;
 		console.log('id :', id);
 		const jsonData = await fs.readFile('src/lib/db/user.json', 'utf8');
 		const data = JSON.parse(jsonData);
-		const index = data.findIndex((item) => item.id === id);
+		const index = data.findIndex((item:any) => item.id === id);
 
 		if (index !== -1) {
 			data.splice(index, 1);

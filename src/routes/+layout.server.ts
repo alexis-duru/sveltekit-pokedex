@@ -1,4 +1,3 @@
-// import pokemons from '../lib/db/pokemons.json';
 import users from '../lib/db/user.json';
 import bagData from '../lib/db/bag.json';
 
